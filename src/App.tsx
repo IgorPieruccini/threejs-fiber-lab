@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import { Vector3 } from "three";
 import Box from "./Box";
-import Triangle from "./Triangle";
+import TinyLittleLucile from "./TinyLittleLucile";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <pointLight intensity={2} position={[-10, -10, -10]} />
         <Box position={new Vector3(1.2, 0, 0)} />
         <Suspense fallback={<Box position={new Vector3(1.2, 0, 0)} />}>
-          <Triangle />
+          <TinyLittleLucile />
         </Suspense>
       </Canvas>
     </div>

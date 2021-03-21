@@ -32,6 +32,7 @@ const TinyLittleLucile = () => {
       morphTargetInfluences={[shapeKey, shapeKey]}
       onClick={onChangeMorph}
       castShadow
+      receiveShadow
     >
       <meshStandardMaterial
         morphTargets

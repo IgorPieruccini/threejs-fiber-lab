@@ -1,14 +1,24 @@
-import React, { Suspense } from "react";
+import React, { MouseEvent, Suspense, useRef } from "react";
 import { Canvas } from "react-three-fiber";
 import { Vector3 } from "three";
 import Box from "./Box";
-import TinyLittleLucile from "./TinyLittleLucile";
 import Floor from "./Floor";
+import TinyLittleLucile from "./TinyLittleLucile";
 
 function App() {
+  const mouse = useRef({ x: 0, y: 0 });
+
+  const onMouseMove = (e: MouseEvent) => {
+    mouse.current = {
+      x: e.clientX,
+      y: e.clientY,
+    };
+  };
+
   return (
     <div style={{ height: "90vh" }}>
       <Canvas
+        onMouseMove={onMouseMove}
         shadowMap
         camera={{
           focus: 1,
@@ -22,10 +32,10 @@ function App() {
           angle={0.15}
           intensity={1}
           castShadow
-          penumbra={0.5}
+          penumbra={1}
         />
         <Suspense fallback={<Box position={new Vector3(1.2, 0, 0)} />}>
-          <TinyLittleLucile />
+          <TinyLittleLucile mouse={mouse} />
         </Suspense>
         <Floor />
       </Canvas>

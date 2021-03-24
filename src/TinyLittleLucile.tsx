@@ -54,13 +54,17 @@ const TinyLittleLucile = ({ mouse }: Props) => {
     "/tinyLittleLucile/tinyCube.png"
   );
 
-  const { nodes } = useLoader(
+  const { nodes, animations } = useLoader(
     GLTFLoader,
     "/tinyLittleLucile/TinyLittleCube.glb"
   );
-  console.log({ nodes });
+  console.log({ animations });
 
   const lucileMesh = nodes["TinyLittleLucile"] as THREE.SkinnedMesh;
+
+  console.log({ nodes });
+  console.log("test", nodes["Scene"].animations);
+
   console.log({ lucileMesh });
 
   const onChangeMorph = () => {

@@ -1,8 +1,9 @@
 import React, { MouseEvent, Suspense, useRef } from "react";
 import { Canvas } from "react-three-fiber";
-import { Vector3 } from "three";
+import { PCFSoftShadowMap, Vector3 } from "three";
 import Box from "./Box";
 import Floor from "./Floor";
+import { Form } from "./Form";
 import TinyLittleLucile from "./TinyLittleLucile";
 
 function App() {
@@ -16,14 +17,20 @@ function App() {
   };
 
   return (
-    <div style={{ height: "90vh" }}>
+    <div style={{ height: "90vh", background: "#f7f7f7" }}>
+      <Form />
       <Canvas
+        style={{ position: "absolute" }}
         onMouseMove={onMouseMove}
         shadowMap
         camera={{
           focus: 1,
           zoom: 2,
           position: new Vector3(0, 2, 15),
+        }}
+        onCreated={({ gl }) => {
+          gl.shadowMap.enabled = true;
+          gl.shadowMap.type = PCFSoftShadowMap;
         }}
       >
         <ambientLight intensity={1} />

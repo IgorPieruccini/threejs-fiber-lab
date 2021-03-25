@@ -1,9 +1,10 @@
 /* eslint-disable dot-notation */
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { useLoader, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { AnimationObjectGroup } from "three";
 
 export function getMouseDegrees(x: number, y: number, degreeLimit: number) {
   let dx = 0;
@@ -58,9 +59,24 @@ const TinyLittleLucile = ({ mouse }: Props) => {
     GLTFLoader,
     "/tinyLittleLucile/TinyLittleCube.glb"
   );
-  console.log({ animations });
 
+  const group = useRef<AnimationObjectGroup>();
+  const actions = useRef<{ idle: THREE.AnimationAction }>();
   const lucileMesh = nodes["TinyLittleLucile"] as THREE.SkinnedMesh;
+
+  const [mixer] = useState(() => new THREE.AnimationMixer(group.current!));
+  console.log({ mixer });
+  useFrame((_, delta) => mixer.update(delta));
+
+  useEffect(() => {
+    if (group.current) {
+      actions.current = {
+        idle: mixer.clipAction(animations[0], group.current),
+      };
+      actions.current.idle.play();
+    }
+    return () => animations.forEach((clip) => mixer.uncacheClip(clip));
+  }, [animations, mixer]);
 
   console.log({ nodes });
   console.log("test", nodes["Scene"].animations);
@@ -78,7 +94,7 @@ const TinyLittleLucile = ({ mouse }: Props) => {
   });
 
   return (
-    <group onClick={onChangeMorph} rotation={[0, 0, 0]}>
+    <group ref={group} onClick={onChangeMorph} rotation={[0, 0, 0]}>
       <skinnedMesh
         geometry={lucileMesh.geometry}
         skeleton={lucileMesh.skeleton}

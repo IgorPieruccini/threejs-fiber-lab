@@ -3,7 +3,7 @@ import { Canvas } from "react-three-fiber";
 import { PCFSoftShadowMap, Vector3 } from "three";
 import Box from "./Box";
 import Floor from "./Floor";
-import { Form } from "./Form";
+import { Form } from "./Form/Form";
 import TinyLittleLucile from "./TinyLittleLucile";
 
 function App() {
@@ -17,10 +17,8 @@ function App() {
   };
 
   return (
-    <div style={{ height: "90vh", background: "#f7f7f7" }}>
-      <Form />
+    <div>
       <Canvas
-        style={{ position: "absolute" }}
         onMouseMove={onMouseMove}
         shadowMap
         camera={{
@@ -46,6 +44,7 @@ function App() {
         </Suspense>
         <Floor />
       </Canvas>
+      <Form />
     </div>
   );
 }

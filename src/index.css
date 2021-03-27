@@ -6,6 +6,15 @@ html body {
   font: 300 16px/18px "Open Sans", sans-serif;
 }
 
+body {
+  background: #4998c0;
+  background: linear-gradient(
+    122deg,
+    rgba(57, 222, 255, 1) 0%,
+    rgba(187, 128, 223, 1) 100%
+  );
+}
+
 canvas {
   height: 100vh;
   width: 100vw;

@@ -31,7 +31,6 @@ const TinyLittleLucile = ({ mouse }: Props) => {
   const lucileMesh = nodes["TinyLittleLucile"] as THREE.SkinnedMesh;
 
   const [mixer] = useState(() => new THREE.AnimationMixer(group.current!));
-  console.log({ mixer });
   useFrame((_, delta) => mixer.update(delta));
 
   useEffect(() => {
@@ -44,11 +43,6 @@ const TinyLittleLucile = ({ mouse }: Props) => {
     return () => animations.forEach((clip) => mixer.uncacheClip(clip));
   }, [animations, mixer]);
 
-  console.log({ nodes });
-  console.log("test", nodes["Scene"].animations);
-
-  console.log({ lucileMesh });
-
   const onChangeMorph = () => {
     setShapeKey(shapeKey === 0 ? 1 : 0);
   };
@@ -60,7 +54,12 @@ const TinyLittleLucile = ({ mouse }: Props) => {
   });
 
   return (
-    <group ref={group} onClick={onChangeMorph} rotation={[0, 0, 0]}>
+    <group
+      position={[-4, 0, 0]}
+      ref={group}
+      onClick={onChangeMorph}
+      rotation={[0, 0.6, 0]}
+    >
       <skinnedMesh
         geometry={lucileMesh.geometry}
         skeleton={lucileMesh.skeleton}

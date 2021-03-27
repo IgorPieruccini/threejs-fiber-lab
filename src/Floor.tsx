@@ -9,7 +9,7 @@ const Floor = () => {
       receiveShadow
     >
       <planeBufferGeometry args={[1, 1, 1]} />
-      <shadowMaterial color="white" />
+      <shadowMaterial color="#4998c0" />
     </mesh>
   );
 };

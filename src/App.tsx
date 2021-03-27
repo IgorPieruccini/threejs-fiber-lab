@@ -24,6 +24,7 @@ function App() {
         camera={{
           focus: 1,
           zoom: 2,
+          rotation: [0, 0, 0],
           position: new Vector3(0, 2, 15),
         }}
         onCreated={({ gl }) => {
@@ -33,11 +34,11 @@ function App() {
       >
         <ambientLight intensity={1} />
         <spotLight
-          position={[10, 10, 10]}
-          angle={0.15}
+          position={[5, 6, 10]}
+          angle={0.5}
           intensity={1}
+          penumbra={0.6}
           castShadow
-          penumbra={1}
         />
         <Suspense fallback={<Box position={new Vector3(1.2, 0, 0)} />}>
           <TinyLittleLucile mouse={mouse} />

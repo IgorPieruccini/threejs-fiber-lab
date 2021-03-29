@@ -1,15 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
 .form {
   top: 0;
   right: 0;
-  width: 80vw;
+  width: 50vw;
   height: 100vh;
   position: absolute;
   pointer-events: none;
+  display: flex;
 }
 
 .container {
+  align-self: center;
+  justify-self: center;
+  width: 400px;
+  height: 500px;
   padding: 2em;
-  height: 60%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,30 +38,43 @@
 .form-input label p {
   text-transform: uppercase;
   font-size: 0.8em;
-  color: #2c2c2c;
+  color: white;
   margin: 0;
   margin-left: 15px;
   margin-bottom: 5px;
 }
 
 .form-input label input {
+  font: 100 "Open Sans", sans-serif;
+
   pointer-events: all;
+  color: white;
   width: 300px;
   padding: 10px;
+  background-color: #13131318;
   outline: none;
   padding-left: 15px;
   padding-right: 15 px;
-  border-style: solid;
-  border-color: palevioletred;
+  border-style: none;
   border-radius: 20px;
+}
+
+h1 {
+  font-family: "Dancing Script", cursive;
+  color: rgb(255 106 155);
+  font-size: 4em;
+  text-shadow: 2px 2px 4px #00000049;
+  margin: 50px;
 }
 
 .form button {
   margin-top: 40px;
-  background-color: palevioletred;
+  background-color: rgb(235, 118, 157);
   border-style: none;
   color: white;
   padding: 10px;
   border-radius: 25px;
   width: 320px;
+  height: 50px;
+  margin-bottom: 70px;
 }

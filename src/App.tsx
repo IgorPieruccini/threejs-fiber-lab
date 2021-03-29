@@ -24,12 +24,12 @@ function App() {
         camera={{
           focus: 1,
           zoom: 2,
-          rotation: [0, 0, 0],
-          position: new Vector3(0, 2, 15),
+          position: new Vector3(0, 5, 15),
         }}
-        onCreated={({ gl }) => {
+        onCreated={({ gl, camera }) => {
           gl.shadowMap.enabled = true;
           gl.shadowMap.type = PCFSoftShadowMap;
+          camera.rotation.set(-0.2, 0, 0);
         }}
       >
         <ambientLight intensity={1} />

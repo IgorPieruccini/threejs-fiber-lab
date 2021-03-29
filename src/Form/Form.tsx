@@ -5,6 +5,7 @@ export const Form = () => {
   return (
     <div className="form">
       <div className="container">
+        <h1>Lucile</h1>
         <div className="form-input">
           <label htmlFor="email">
             <p>Email</p>
@@ -19,7 +20,7 @@ export const Form = () => {
           </label>
         </div>
 
-        <button type="submit">Sign up</button>
+        <button type="submit">LOGIN</button>
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ const TinyLittleLucile = ({ mouse }: Props) => {
   };
 
   useFrame(() => {
-    const degree = getMouseDegrees(mouse.current.x, mouse.current.y, 0.5);
+    const degree = getMouseDegrees(mouse.current.x, mouse.current.y, 0.7);
     nodes["Head"].rotation.y = degree.x;
     nodes["Head"].rotation.x = degree.y;
   });

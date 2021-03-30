@@ -15,7 +15,11 @@ interface Props {
 }
 
 const TinyLittleLucile = ({ mouse }: Props) => {
-  const [shapeKey, setShapeKey] = useState(1);
+  const blinkTimer = useRef(0);
+  const blinkTime = useRef(1.5);
+  const [eyeShapeKey, setEyeShapeKey] = useState(0);
+  const [mouthShapeKey, setMouthShapeKey] = useState(0.2);
+
   const texture: THREE.Texture = useLoader(
     THREE.TextureLoader,
     "/tinyLittleLucile/tinyCube.png"
@@ -32,6 +36,14 @@ const TinyLittleLucile = ({ mouse }: Props) => {
 
   const [mixer] = useState(() => new THREE.AnimationMixer(group.current!));
   useFrame((_, delta) => mixer.update(delta));
+  useFrame((_, delta) => {
+    blinkTimer.current += delta;
+    if (blinkTimer.current >= blinkTime.current) {
+      blinkTimer.current = 0;
+      blinkTime.current = blinkTime.current === 1.5 ? 0.1 : 1.5;
+      setEyeShapeKey((old) => (old === 1 ? 0 : 1));
+    }
+  });
 
   useEffect(() => {
     if (group.current) {
@@ -43,10 +55,6 @@ const TinyLittleLucile = ({ mouse }: Props) => {
     return () => animations.forEach((clip) => mixer.uncacheClip(clip));
   }, [animations, mixer]);
 
-  const onChangeMorph = () => {
-    setShapeKey(shapeKey === 0 ? 1 : 0);
-  };
-
   useFrame(() => {
     const degree = getMouseDegrees(mouse.current.x, mouse.current.y, 0.7);
     nodes["Head"].rotation.y = degree.x;
@@ -54,19 +62,20 @@ const TinyLittleLucile = ({ mouse }: Props) => {
   });
 
   return (
-    <group
-      position={[-4, 0, 0]}
-      ref={group}
-      onClick={onChangeMorph}
-      rotation={[0, 0.6, 0]}
-    >
+    <group position={[-4, 0, 0]} ref={group} rotation={[0, 0.6, 0]}>
       <skinnedMesh
         geometry={lucileMesh.geometry}
         skeleton={lucileMesh.skeleton}
         morphTargetDictionary={lucileMesh.morphTargetDictionary}
-        morphTargetInfluences={[shapeKey, shapeKey]}
+        morphTargetInfluences={[eyeShapeKey, mouthShapeKey]}
         castShadow
         receiveShadow
+        onPointerOver={() => {
+          setMouthShapeKey(0.4);
+        }}
+        onPointerOut={() => {
+          setMouthShapeKey(0);
+        }}
       >
         <primitive object={nodes["root"]} />
         <meshStandardMaterial

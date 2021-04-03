@@ -32,3 +32,25 @@ export function getMouseDegrees(x: number, y: number, degreeLimit: number) {
   }
   return { x: dx, y: dy };
 }
+
+export const getMoveDirection = (
+  curPoint: number,
+  aimPoint: number,
+  move: number
+) => {
+  return curPoint >= aimPoint ? -move : move;
+};
+
+export const getDistance = (curPoint: number, aimPoint: number) => {
+  const dist = aimPoint - curPoint;
+  return dist < 0 ? dist * -1 : dist;
+};
+
+export const nearBy = (curPoint: number, aimPoint: number, range: number) => {
+  return getDistance(curPoint, aimPoint) < range;
+};
+
+export const clamp = (curPoint: number, aimPoint: number, clump: number) => {
+  const dist = getDistance(curPoint, aimPoint);
+  return dist < clump ? dist - aimPoint : curPoint;
+};

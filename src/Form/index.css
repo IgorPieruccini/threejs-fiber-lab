@@ -54,6 +54,7 @@
 }
 
 .form-input label input {
+  height: 22px;
   pointer-events: all;
   font: 100 "Open Sans", sans-serif;
   color: white;

@@ -10,7 +10,7 @@ export const Scene = () => {
   const form = useForm();
   const mouse = useRef({ x: 0, y: 0 });
 
-  const onMouseMove = (e: any) => {
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     mouse.current = {
       x: e.clientX,
       y: e.clientY,
@@ -20,7 +20,7 @@ export const Scene = () => {
   return (
     <Canvas
       className="formCanvas"
-      onMouseMove={onMouseMove}
+      onMouseMove={(e) => onMouseMove(e)}
       shadowMap
       camera={{
         focus: 1,

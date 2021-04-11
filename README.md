@@ -1,7 +1,7 @@
 This project is an simple experiment with React Three Fiber to learn the basics functionalities.
 It includes the 3D model i've modeled and used for this project, feel free to use it whereever you want to.
 
-Click [Here](d3ahzjxsehx03c.cloudfront.net) to checkout the demo.
+Click [Here](https://d3ahzjxsehx03c.cloudfront.net) to checkout the demo.
 
 ![lucile](https://user-images.githubusercontent.com/65550992/114302575-e7068400-9ac9-11eb-8696-9eecce3dfbdd.gif)
 
